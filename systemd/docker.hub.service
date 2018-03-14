@@ -10,12 +10,12 @@ EnvironmentFile=/etc/environment
 ExecStartPre=-/usr/bin/docker exec hub stop 
 ExecStartPre=-/usr/bin/docker rm hub
 ExecStart=/usr/bin/docker run --rm --name hub \
- -v $HubDataFolder:/opt/hub/data \
- -v $HubConfFolder:/opt/hub/conf \
- -v $HubLogsFolder:/opt/hub/logs \
- -v $HubBackupFolder:/opt/hub/backups \
+ -v ${HubDataFolder}:/opt/hub/data \
+ -v ${HubConfFolder}:/opt/hub/conf \
+ -v ${HubLogsFolder}:/opt/hub/logs \
+ -v ${HubBackupFolder}:/opt/hub/backups \
  -p 8080:8080 \
- jetbrains/hub:$HubVersion
+ jetbrains/hub:${HubVersion}
 
 [Install]
 WantedBy=default.target
