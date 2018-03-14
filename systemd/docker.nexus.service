@@ -10,7 +10,7 @@ EnvironmentFile=/etc/environment
 ExecStartPre=-/usr/bin/docker exec nexus stop 
 ExecStartPre=-/usr/bin/docker rm nexus
 ExecStart=/usr/bin/docker run --rm --name nexus \
- -v ${NexusDataFolder}:/nexus-data
+ -v ${NexusDataFolder}:/nexus-data \
  -p 8081:8081 \
  sonatype/nexus3:3.0.0
 
