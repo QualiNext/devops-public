@@ -1,0 +1,21 @@
+[Unit]
+Description=Hub Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker exec %n stop 
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull jetbrains/hub:<version>
+ExecStart=/usr/bin/docker run --rm --name %n \
+    -v <path to data directory>:/opt/hub/data \
+    -v <path to conf directory>:/opt/hub/conf  \
+    -v <path to logs directory>:/opt/hub/logs  \
+    -v <path to backups directory>:/opt/hub/backups  \
+    -p <port on host>:8080 \
+    jetbrains/hub:<version>
+
+[Install]
+WantedBy=default.target
