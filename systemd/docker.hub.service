@@ -7,8 +7,8 @@ Requires=docker.service
 TimeoutStartSec=0
 Restart=always
 EnvironmentFile=/etc/environment
-ExecStartPre=/usr/bin/docker exec hub stop 
-ExecStartPre=/usr/bin/docker rm hub
+ExecStartPre=-/usr/bin/docker exec hub stop 
+ExecStartPre=-/usr/bin/docker rm hub
 ExecStart=/usr/bin/docker run --rm --name hub \
  -v $HubDataFolder:/opt/hub/data \
  -v $HubConfFolder:/opt/hub/conf \
